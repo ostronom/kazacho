@@ -12,31 +12,32 @@ import Data.Maybe
 data Chain = Node (List String) (Number -> Chain)
            | Stop
 
-p1 = "шанхайский" : "прибалтийский" : "дальневосточный" : "филиппинский" :
-     "лунный" : "калифорнийский" : "теночтитланский" : "антарктический" : Nil
+geo = "шанхайский" : "прибалтийский" : "дальневосточный" : "филиппинский" :
+     "лунный" : "калифорнийский" : "теночтитланский" : "антарктический" :
+     "заполярный" : Nil
 
-p2 = "краснознамённый" : "имени Сербского" : "объединённый" : "сводный" :
+adj = "краснознамённый" : "имени Сербского" : "объединённый" : "сводный" :
      "ставропигиальный" : "отдельный" : "святоотеческий" : "трубопрокладочный" :
-     "имени Сталина" : Nil
+     "имени Сталина" : "девичий" : Nil
 
-p3 = "казачий" : Nil
+kaz = "казачий" : "староказачий" : Nil
 
-p4 = "батальон" : "отряд" : "круг" : Nil
+squad = "батальон" : "отряд" : "круг" : Nil
 
-chain1 = Node p1 t
+geoChain = Node geo t
   where
-    t x | x < 0.25 = chain1
-    t x | x < 0.5  = chain2
-    t _ = chain3
+    t x | x < 0.25 = geoChain
+    t x | x < 0.5  = adjChain
+    t _ = kazChain
 
-chain2 = Node p2 t
+adjChain = Node adj t
   where
-    t x | x < 0.5 = chain2
-    t _ = chain3
+    t x | x < 0.5 = adjChain
+    t _ = kazChain
 
-chain3 = Node p3 (\_ -> chain4)
+kazChain = Node kaz (\_ -> squadChain)
 
-chain4 = Node p4 (\_ -> Stop)
+squadChain = Node squad (\_ -> Stop)
 
 chooseWord :: forall eff. List String -> Eff (random :: RANDOM | eff) String
 chooseWord words = do
@@ -55,7 +56,7 @@ genKazacho acc (Node ws t) = do
 
 kazacho' :: forall eff. Eff (random :: RANDOM | eff) (List String)
 kazacho' = do
-  res <- nub <$> genKazacho Nil chain1
+  res <- nub <$> genKazacho Nil geoChain
   if length res > 3 then pure res else kazacho'
 
 kazacho :: forall eff. Eff (random :: RANDOM | eff) String

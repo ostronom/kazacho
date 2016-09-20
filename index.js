@@ -1376,11 +1376,16 @@ var PS = {};
       Stop.value = new Stop();
       return Stop;
   })();
-  var p4 = new Data_List.Cons("\u0431\u0430\u0442\u0430\u043b\u044c\u043e\u043d", new Data_List.Cons("\u043e\u0442\u0440\u044f\u0434", new Data_List.Cons("\u043a\u0440\u0443\u0433", Data_List.Nil.value)));
-  var p3 = new Data_List.Cons("\u043a\u0430\u0437\u0430\u0447\u0438\u0439", Data_List.Nil.value);
-  var p2 = new Data_List.Cons("\u043a\u0440\u0430\u0441\u043d\u043e\u0437\u043d\u0430\u043c\u0451\u043d\u043d\u044b\u0439", new Data_List.Cons("\u0438\u043c\u0435\u043d\u0438 \u0421\u0435\u0440\u0431\u0441\u043a\u043e\u0433\u043e", new Data_List.Cons("\u043e\u0431\u044a\u0435\u0434\u0438\u043d\u0451\u043d\u043d\u044b\u0439", new Data_List.Cons("\u0441\u0432\u043e\u0434\u043d\u044b\u0439", new Data_List.Cons("\u0441\u0442\u0430\u0432\u0440\u043e\u043f\u0438\u0433\u0438\u0430\u043b\u044c\u043d\u044b\u0439", new Data_List.Cons("\u043e\u0442\u0434\u0435\u043b\u044c\u043d\u044b\u0439", new Data_List.Cons("\u0441\u0432\u044f\u0442\u043e\u043e\u0442\u0435\u0447\u0435\u0441\u043a\u0438\u0439", new Data_List.Cons("\u0442\u0440\u0443\u0431\u043e\u043f\u0440\u043e\u043a\u043b\u0430\u0434\u043e\u0447\u043d\u044b\u0439", new Data_List.Cons("\u0438\u043c\u0435\u043d\u0438 \u0421\u0442\u0430\u043b\u0438\u043d\u0430", Data_List.Nil.value)))))))));
-  var p1 = new Data_List.Cons("\u0448\u0430\u043d\u0445\u0430\u0439\u0441\u043a\u0438\u0439", new Data_List.Cons("\u043f\u0440\u0438\u0431\u0430\u043b\u0442\u0438\u0439\u0441\u043a\u0438\u0439", new Data_List.Cons("\u0434\u0430\u043b\u044c\u043d\u0435\u0432\u043e\u0441\u0442\u043e\u0447\u043d\u044b\u0439", new Data_List.Cons("\u0444\u0438\u043b\u0438\u043f\u043f\u0438\u043d\u0441\u043a\u0438\u0439", new Data_List.Cons("\u043b\u0443\u043d\u043d\u044b\u0439", new Data_List.Cons("\u043a\u0430\u043b\u0438\u0444\u043e\u0440\u043d\u0438\u0439\u0441\u043a\u0438\u0439", new Data_List.Cons("\u0442\u0435\u043d\u043e\u0447\u0442\u0438\u0442\u043b\u0430\u043d\u0441\u043a\u0438\u0439", new Data_List.Cons("\u0430\u043d\u0442\u0430\u0440\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0439", Data_List.Nil.value))))))));
+  var squad = new Data_List.Cons("\u0431\u0430\u0442\u0430\u043b\u044c\u043e\u043d", new Data_List.Cons("\u043e\u0442\u0440\u044f\u0434", new Data_List.Cons("\u043a\u0440\u0443\u0433", Data_List.Nil.value)));
+  var squadChain = new Node(squad, function (v) {
+      return Stop.value;
+  });
+  var kaz = new Data_List.Cons("\u043a\u0430\u0437\u0430\u0447\u0438\u0439", new Data_List.Cons("\u0441\u0442\u0430\u0440\u043e\u043a\u0430\u0437\u0430\u0447\u0438\u0439", Data_List.Nil.value));
+  var kazChain = new Node(kaz, function (v) {
+      return squadChain;
+  });
   var joinList = Data_Foldable.intercalate(Data_List.foldableList)(Data_Monoid.monoidString)(" ");
+  var geo = new Data_List.Cons("\u0448\u0430\u043d\u0445\u0430\u0439\u0441\u043a\u0438\u0439", new Data_List.Cons("\u043f\u0440\u0438\u0431\u0430\u043b\u0442\u0438\u0439\u0441\u043a\u0438\u0439", new Data_List.Cons("\u0434\u0430\u043b\u044c\u043d\u0435\u0432\u043e\u0441\u0442\u043e\u0447\u043d\u044b\u0439", new Data_List.Cons("\u0444\u0438\u043b\u0438\u043f\u043f\u0438\u043d\u0441\u043a\u0438\u0439", new Data_List.Cons("\u043b\u0443\u043d\u043d\u044b\u0439", new Data_List.Cons("\u043a\u0430\u043b\u0438\u0444\u043e\u0440\u043d\u0438\u0439\u0441\u043a\u0438\u0439", new Data_List.Cons("\u0442\u0435\u043d\u043e\u0447\u0442\u0438\u0442\u043b\u0430\u043d\u0441\u043a\u0438\u0439", new Data_List.Cons("\u0430\u043d\u0442\u0430\u0440\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0439", new Data_List.Cons("\u0437\u0430\u043f\u043e\u043b\u044f\u0440\u043d\u044b\u0439", Data_List.Nil.value)))))))));
   var chooseWord = function (words) {
       return function __do() {
           var v = Control_Monad_Eff_Random.randomInt(0)(Data_List.length(words) - 1)();
@@ -1401,39 +1406,34 @@ var PS = {};
                   return genKazacho(Data_List.snoc(acc)(v1))(v.value1(v2))();
               };
           };
-          throw new Error("Failed pattern match at Kazacho line 50, column 1 - line 50, column 31: " + [ acc.constructor.name, v.constructor.name ]);
+          throw new Error("Failed pattern match at Kazacho line 51, column 1 - line 51, column 31: " + [ acc.constructor.name, v.constructor.name ]);
       };
   };
-  var chain4 = new Node(p4, function (v) {
-      return Stop.value;
-  });
-  var chain3 = new Node(p3, function (v) {
-      return chain4;
-  });
-  var chain2 = (function () {
+  var adj = new Data_List.Cons("\u043a\u0440\u0430\u0441\u043d\u043e\u0437\u043d\u0430\u043c\u0451\u043d\u043d\u044b\u0439", new Data_List.Cons("\u0438\u043c\u0435\u043d\u0438 \u0421\u0435\u0440\u0431\u0441\u043a\u043e\u0433\u043e", new Data_List.Cons("\u043e\u0431\u044a\u0435\u0434\u0438\u043d\u0451\u043d\u043d\u044b\u0439", new Data_List.Cons("\u0441\u0432\u043e\u0434\u043d\u044b\u0439", new Data_List.Cons("\u0441\u0442\u0430\u0432\u0440\u043e\u043f\u0438\u0433\u0438\u0430\u043b\u044c\u043d\u044b\u0439", new Data_List.Cons("\u043e\u0442\u0434\u0435\u043b\u044c\u043d\u044b\u0439", new Data_List.Cons("\u0441\u0432\u044f\u0442\u043e\u043e\u0442\u0435\u0447\u0435\u0441\u043a\u0438\u0439", new Data_List.Cons("\u0442\u0440\u0443\u0431\u043e\u043f\u0440\u043e\u043a\u043b\u0430\u0434\u043e\u0447\u043d\u044b\u0439", new Data_List.Cons("\u0438\u043c\u0435\u043d\u0438 \u0421\u0442\u0430\u043b\u0438\u043d\u0430", new Data_List.Cons("\u0434\u0435\u0432\u0438\u0447\u0438\u0439", Data_List.Nil.value))))))))));
+  var adjChain = (function () {
       var t = function (v) {
           if (v < 0.5) {
-              return chain2;
+              return adjChain;
           };
-          return chain3;
+          return kazChain;
       };
-      return new Node(p2, t);
+      return new Node(adj, t);
   })();
-  var chain1 = (function () {
+  var geoChain = (function () {
       var t = function (v) {
           if (v < 0.25) {
-              return chain1;
+              return geoChain;
           };
           if (v < 0.5) {
-              return chain2;
+              return adjChain;
           };
-          return chain3;
+          return kazChain;
       };
-      return new Node(p1, t);
+      return new Node(geo, t);
   })();
   var kazacho$prime = function __do() {
       tco: while (true) {
-          var v = Data_Functor.map(Control_Monad_Eff.functorEff)(Data_List.nub(Data_Eq.eqString))(genKazacho(Data_List.Nil.value)(chain1))();
+          var v = Data_Functor.map(Control_Monad_Eff.functorEff)(Data_List.nub(Data_Eq.eqString))(genKazacho(Data_List.Nil.value)(geoChain))();
           var $22 = Data_List.length(v) > 3;
           if ($22) {
               return v;
@@ -1441,7 +1441,7 @@ var PS = {};
           if (!$22) {
               continue tco;
           };
-          throw new Error("Failed pattern match at Kazacho line 59, column 3 - line 59, column 48: " + [ $22.constructor.name ]);
+          throw new Error("Failed pattern match at Kazacho line 60, column 3 - line 60, column 48: " + [ $22.constructor.name ]);
       };
   };
   var kazacho = function __do() {
